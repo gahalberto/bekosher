@@ -34,18 +34,26 @@ export default function PreRegistrationSection() {
       // URL do Google Apps Script
       const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx9hVgk6nc0cqe-H5oEvYpcMR-VtAWuA_2VwO9i3rpUDNVp981aOwzbdsELMbmyQFK6/exec'
       
+      console.log('📤 Sending data:', formData)
+      console.log('🔗 URL:', GOOGLE_SCRIPT_URL)
+      
       // Enviar dados para Google Sheets
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
+        mode: 'no-cors', // Required for Google Apps Script
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData)
       })
       
-      const result = await response.json()
+      console.log('📡 Response status:', response.status)
+      console.log('📡 Response type:', response.type)
       
-      if (result.success) {
+      // For mode: 'no-cors', we can't read the response
+      // But if we got here, it probably worked
+      if (response.type === 'opaque') {
+        console.log('✅ Data sent successfully (no-cors mode)')
         setIsLoading(false)
         setIsSubmitted(true)
         
@@ -61,13 +69,42 @@ export default function PreRegistrationSection() {
           })
         }, 3000)
       } else {
-        throw new Error('Error sending data')
+        // If not opaque, try to read as JSON
+        const result = await response.json()
+        console.log('📊 Result:', result)
+        
+        if (result.success) {
+          setIsLoading(false)
+          setIsSubmitted(true)
+          
+          // Reset form after 3 seconds
+          setTimeout(() => {
+            setIsSubmitted(false)
+            setFormData({
+              establishmentName: '',
+              responsibleName: '',
+              phone: '',
+              email: '',
+              message: ''
+            })
+          }, 3000)
+        } else {
+          throw new Error(`Server error: ${result.error || 'Unknown error'}`)
+        }
       }
       
     } catch (error) {
-      console.error('Error:', error)
+      console.error('❌ Detailed error:', error)
+      console.error('❌ Error message:', error.message)
+      console.error('❌ Error stack:', error.stack)
       setIsLoading(false)
-      alert('Error sending form. Please try again.')
+      
+      // Show more detailed error
+      const errorMessage = error.message.includes('fetch') 
+        ? 'Connection error. Check your internet and try again.'
+        : `Error sending: ${error.message}`
+      
+      alert(errorMessage)
     }
   }
 

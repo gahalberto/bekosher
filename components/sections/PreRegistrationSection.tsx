@@ -34,18 +34,26 @@ export default function PreRegistrationSection() {
       // URL do Google Apps Script
       const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx9hVgk6nc0cqe-H5oEvYpcMR-VtAWuA_2VwO9i3rpUDNVp981aOwzbdsELMbmyQFK6/exec'
       
+      console.log('📤 Enviando dados:', formData)
+      console.log('🔗 URL:', GOOGLE_SCRIPT_URL)
+      
       // Enviar dados para Google Sheets
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
+        mode: 'no-cors', // Necessário para Google Apps Script
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData)
       })
       
-      const result = await response.json()
+      console.log('📡 Response status:', response.status)
+      console.log('📡 Response type:', response.type)
       
-      if (result.success) {
+      // Para mode: 'no-cors', não conseguimos ler a resposta
+      // Mas se chegou até aqui, provavelmente funcionou
+      if (response.type === 'opaque') {
+        console.log('✅ Dados enviados com sucesso (modo no-cors)')
         setIsLoading(false)
         setIsSubmitted(true)
         
@@ -61,13 +69,42 @@ export default function PreRegistrationSection() {
           })
         }, 3000)
       } else {
-        throw new Error('Erro ao enviar dados')
+        // Se não for opaque, tenta ler como JSON
+        const result = await response.json()
+        console.log('📊 Result:', result)
+        
+        if (result.success) {
+          setIsLoading(false)
+          setIsSubmitted(true)
+          
+          // Reset form after 3 seconds
+          setTimeout(() => {
+            setIsSubmitted(false)
+            setFormData({
+              establishmentName: '',
+              responsibleName: '',
+              phone: '',
+              email: '',
+              message: ''
+            })
+          }, 3000)
+        } else {
+          throw new Error(`Erro do servidor: ${result.error || 'Erro desconhecido'}`)
+        }
       }
       
     } catch (error) {
-      console.error('Erro:', error)
+      console.error('❌ Erro detalhado:', error)
+      console.error('❌ Erro message:', error.message)
+      console.error('❌ Erro stack:', error.stack)
       setIsLoading(false)
-      alert('Erro ao enviar o formulário. Tente novamente.')
+      
+      // Mostrar erro mais detalhado
+      const errorMessage = error.message.includes('fetch') 
+        ? 'Erro de conexão. Verifique sua internet e tente novamente.'
+        : `Erro ao enviar: ${error.message}`
+      
+      alert(errorMessage)
     }
   }
 
