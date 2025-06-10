@@ -11,6 +11,8 @@ interface ButtonProps {
   onClick?: () => void
   className?: string
   href?: string
+  type?: 'button' | 'submit' | 'reset'
+  disabled?: boolean
 }
 
 export default function Button({ 
@@ -19,7 +21,9 @@ export default function Button({
   size = 'md',
   onClick, 
   className = '',
-  href
+  href,
+  type = 'button',
+  disabled = false
 }: ButtonProps) {
   const baseClass = 'btn'
   const variantClass = {
@@ -34,14 +38,17 @@ export default function Button({
     lg: 'text-lg px-8 py-4'
   }[size]
 
-  const buttonClass = `${baseClass} ${variantClass} ${sizeClass} ${className}`
+  const disabledClass = disabled ? 'opacity-50 cursor-not-allowed' : ''
+  const buttonClass = `${baseClass} ${variantClass} ${sizeClass} ${disabledClass} ${className}`
 
   const ButtonComponent = (
     <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={!disabled ? { scale: 1.05 } : {}}
+      whileTap={!disabled ? { scale: 0.95 } : {}}
       className={buttonClass}
       onClick={onClick}
+      type={type}
+      disabled={disabled}
     >
       {children}
     </motion.button>

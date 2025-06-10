@@ -72,10 +72,10 @@ export default function VisitorChallengeSection() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <Card className="text-center bg-red-500/20 border-red-400/30 backdrop-blur-sm">
-                <Users className="w-8 h-8 text-red-300 mx-auto mb-4" />
+              <Card className="text-center bg-red-600/90 border-red-400/50 backdrop-blur-sm">
+                <Users className="w-8 h-8 text-red-100 mx-auto mb-4" />
                 <h3 className="font-semibold text-white mb-2">Lost Tourists</h3>
-                <p className="text-sm text-primary-200">Jewish visitors can't find where to eat safely</p>
+                <p className="text-sm text-red-100">Jewish visitors can't find where to eat safely</p>
               </Card>
             </motion.div>
 
@@ -84,10 +84,10 @@ export default function VisitorChallengeSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <Card className="text-center bg-orange-500/20 border-orange-400/30 backdrop-blur-sm">
-                <MessageSquare className="w-8 h-8 text-orange-300 mx-auto mb-4" />
+              <Card className="text-center bg-orange-600/90 border-orange-400/50 backdrop-blur-sm">
+                <MessageSquare className="w-8 h-8 text-orange-100 mx-auto mb-4" />
                 <h3 className="font-semibold text-white mb-2">Language Barrier</h3>
-                <p className="text-sm text-primary-200">Information only in Portuguese makes access difficult</p>
+                <p className="text-sm text-orange-100">Information only in Portuguese makes access difficult</p>
               </Card>
             </motion.div>
 
@@ -96,10 +96,10 @@ export default function VisitorChallengeSection() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <Card className="text-center bg-yellow-500/20 border-yellow-400/30 backdrop-blur-sm">
-                <Clock className="w-8 h-8 text-yellow-300 mx-auto mb-4" />
+              <Card className="text-center bg-yellow-600/90 border-yellow-400/50 backdrop-blur-sm">
+                <Clock className="w-8 h-8 text-yellow-100 mx-auto mb-4" />
                 <h3 className="font-semibold text-white mb-2">Wasted Time</h3>
-                <p className="text-sm text-primary-200">Hours spent searching for reliable information</p>
+                <p className="text-sm text-yellow-100">Hours searching for reliable information</p>
               </Card>
             </motion.div>
           </div>
@@ -109,45 +109,45 @@ export default function VisitorChallengeSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <Card className="bg-gradient-to-r from-gold-500/20 to-gold-600/20 border-gold-400/30 backdrop-blur-sm">
+            <Card className="bg-gradient-to-r from-gold-600/90 to-gold-700/90 border-gold-400/50 backdrop-blur-sm">
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-6 text-gold-300">
+                <h3 className="text-2xl font-bold mb-6 text-gold-100">
                   🚀 The BeKosher Solution
                 </h3>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <Globe className="w-6 h-6 text-gold-400" />
+                      <Globe className="w-6 h-6 text-gold-200" />
                       <span className="text-white font-semibold">Trilingual Platform</span>
                     </div>
-                    <p className="text-primary-200 text-sm">Portuguese, English, and Hebrew</p>
+                    <p className="text-gold-100 text-sm">Portuguese, English, and Hebrew</p>
                     
                     <div className="flex items-center gap-3">
-                      <MapPin className="w-6 h-6 text-gold-400" />
+                      <MapPin className="w-6 h-6 text-gold-200" />
                       <span className="text-white font-semibold">Precise Location</span>
                     </div>
-                    <p className="text-primary-200 text-sm">Maps, addresses, and directions</p>
+                    <p className="text-gold-100 text-sm">Maps, addresses, and directions</p>
                   </div>
                   
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <Clock className="w-6 h-6 text-gold-400" />
+                      <Clock className="w-6 h-6 text-gold-200" />
                       <span className="text-white font-semibold">Complete Information</span>
                     </div>
-                    <p className="text-primary-200 text-sm">Hours, menus, and contacts</p>
+                    <p className="text-gold-100 text-sm">Hours, menus, and contacts</p>
                     
                     <div className="flex items-center gap-3">
-                      <Users className="w-6 h-6 text-gold-400" />
+                      <Users className="w-6 h-6 text-gold-200" />
                       <span className="text-white font-semibold">Universal Access</span>
                     </div>
-                    <p className="text-primary-200 text-sm">Available from anywhere in the world</p>
+                    <p className="text-gold-100 text-sm">Available from anywhere in the world</p>
                   </div>
                 </div>
                 
                 <div className="mt-8 p-4 bg-white/10 rounded-lg">
                   <p className="text-lg text-white font-medium">
-                    <strong className="text-gold-300">A simple but transformative solution</strong> for those who just want to eat peacefully — even far from home.
+                    <strong className="text-gold-200">A simple but transformative solution</strong> for those who just want to eat with peace of mind — even away from home.
                   </p>
                 </div>
               </div>

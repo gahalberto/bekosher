@@ -6,8 +6,9 @@ import ProblemsSection from '../components/sections/ProblemsSection'
 import ProblemExampleSection from '../components/sections/ProblemExampleSection'
 import VisitorChallengeSection from '../components/sections/VisitorChallengeSection'
 import SolutionsSection from '../components/sections/SolutionsSection'
-import FundingSection from '../components/sections/FundingSection'
-import ImpactSection from '../components/sections/ImpactSection'
+// import FundingSection from '../components/sections/FundingSection'
+// import ImpactSection from '../components/sections/ImpactSection'
+import PreRegistrationSection from '../components/sections/PreRegistrationSection'
 import CallToActionSection from '../components/sections/CallToActionSection'
 import LanguageSelector from '../components/ui/LanguageSelector'
 
@@ -20,8 +21,9 @@ export default function HomePage() {
       <ProblemExampleSection />
       <VisitorChallengeSection />
       <SolutionsSection />
-      <FundingSection />
-      <ImpactSection />
+      {/* <FundingSection /> */}
+      {/* <ImpactSection /> */}
+      <PreRegistrationSection />
       <CallToActionSection />
     </main>
   )
